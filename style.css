@@ -1,0 +1,414 @@
+/* Inline styles to make it self-contained */
+:root {
+  --primary: #e74c3c;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f6f9;
+}
+.container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.logo {
+  padding: 10px;
+}
+
+.nav-item {
+  padding: 14px 25px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #555;
+  text-decoration: none;
+  transition: 0.3s;
+}
+.nav-item:hover,
+.nav-item.active {
+  background: #f8f9fa;
+  color: var(--primary);
+  border-left: 4px solid var(--primary);
+}
+.main-content {
+  flex: 1;
+  margin-left: 240px;
+  padding: 20px;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: end;
+
+  align-items: center;
+  padding: 12px 20px;
+  background: #f9fafb;
+  border-bottom: 1px solid #e5e7eb;
+  gap: 10px;
+}
+
+.calendar-header > div:first-child {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.calendar-header button {
+  padding: 6px 10px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+.calendar-header button:hover {
+  background: #2c7be5;
+  color: white;
+}
+
+#month-year {
+  font-size: 16px;
+  font-weight: 600;
+  color: #374151;
+  padding: 6px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+}
+
+.calander-header-buttun {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.calander-header-buttun button {
+  padding: 10px 14px;
+  font-weight: 600;
+}
+
+.calander-header-buttun select {
+  padding: 8px 10px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+}
+.calendar-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: larger;
+  color: #2c7be5;
+}
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  background: white;
+  padding: 20px;
+  border: #333;
+}
+.day-header {
+  text-align: center;
+  font-weight: 600;
+  padding: 12px 0;
+  color: #666;
+  background: #f8f9fa;
+  border-radius: 6px;
+}
+.calendar-day {
+  min-height: 110px;
+  border: 1px solid #eee;
+  padding: 8px;
+  position: relative;
+  background: white;
+}
+.calendar-day:hover {
+  background: #fdfdfd;
+}
+.calendar-day strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 15px;
+}
+
+.appointment-actions {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  display: none;
+  gap: 4px;
+  font-size: 16px;
+}
+.appointment:hover .appointment-actions {
+  display: flex;
+}
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal-content {
+  background: white;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 12px;
+  padding: 25px;
+  display: grid;
+  grid-column: 3;
+}
+.form-group {
+  margin-bottom: 18px;
+}
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+select,
+input,
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 15px;
+}
+.modal-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+.btn {
+  padding: 10px 22px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.btn-cancel {
+  background: #eee;
+  color: #333;
+}
+.btn-save {
+  background: var(--primary);
+  color: white;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+th,
+td {
+  padding: 14px 10px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+th {
+  background: #f8f9fa;
+  font-weight: 600;
+}
+.action-btns button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  margin-right: 8px;
+}
+.edit-btn {
+  color: #3498db;
+}
+.delete-btn {
+  color: #e74c3c;
+}
+
+@media (max-width: 992px) {
+  .sidebar {
+    width: 70px;
+  }
+  .sidebar span:not(.material-icons) {
+    display: none;
+  }
+  .main-content {
+    margin-left: 70px;
+  }
+}
+
+.calendar-day.empty {
+  background: #fafafa;
+}
+
+.calendar-day .date {
+  font-weight: bold;
+}
+
+.calendar-day.today {
+  background: #dbeafe;
+}
+
+.appointment {
+  background: #22c55e;
+  color: white;
+  font-size: 10px;
+  padding: 3px;
+  margin-top: 3px;
+  border-radius: 4px;
+}
+
+.material-icons {
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Sidebar */
+.sidebar {
+  width: 240px;
+  background: #f8f9fb;
+  border-right: 1px solid #eee;
+  padding: 20px 0;
+  transition: width 0.3s ease;
+}
+
+.nav-item {
+  padding: 14px 25px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #555;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.nav-item:hover,
+.nav-item.active {
+  background: #f1f3f7;
+  color: #2c7be5;
+  border-left: 4px solid #2c7be5;
+}
+
+/* Main Area */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: white;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 25px;
+  background: white;
+  border-bottom: 1px solid #eee;
+}
+
+.book-btn {
+  background: #2c7be5;
+  z-index: 100;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.sidebar.collapsed {
+  width: 60px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+}
+
+.toggle-btn {
+  background: none;
+  border: none;
+  color: black;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  justify-content: end;
+}
+
+.sidebar.collapsed .text {
+  display: none;
+}
+
+.sidebar.collapsed .nav-item {
+  justify-content: center;
+}
+
+@media (max-width: 1024px) {
+  .dashboard {
+    padding: 15px !important;
+  }
+
+  .dashboard h2 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard > div {
+    flex-direction: column !important;
+    gap: 12px !important;
+  }
+
+  .dashboard input,
+  .dashboard button,
+  .dashboard select {
+    width: 100%;
+  }
+
+  .dashboard > div > div {
+    flex-direction: column;
+    align-items: stretch !important;
+  }
+
+  table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .dashboard {
+    padding: 10px !important;
+  }
+
+  .dashboard h2 {
+    font-size: 18px;
+    text-align: center;
+  }
+}

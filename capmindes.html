@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CAPMINDS - Appointment System</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+  <div class="logo">
+    <img src="assets/Capminds_logo.png" alt="logo" height="40px" />
+   
+  </div>
+<button class="toggle-btn" onclick="toggleSidebar()">
+  <span id="toggleIcon" class="material-icons">chevron_left</span>
+</button>
+  <a href="#" class="nav-item" onclick="showDashboard(event)">
+    <span class="material-icons">dashboard</span>
+    <span class="text">Dashboard</span>
+  </a>
+
+  <a href="#" class="nav-item active" onclick="showCalendar(event)">
+    <span class="material-icons">calendar_month</span>
+    <span class="text">Calendar</span>
+  </a>
+</aside>
+
+      <!-- Main Content -->
+      <div class="main">
+        <!-- Header -->
+        <header class="header">
+          <div></div>
+          <button class="book-btn" onclick="openModal()">
+            <span class="material-icons">add</span> Book Appointment
+          </button>
+          <div></div>
+        </header>
+
+        <!-- Calendar View -->
+       <div class="content" id="calendar-view">
+ <div class="calendar-header">
+  
+  <!-- Left -->
+  <div>
+    <button onclick="prevMonth()">
+      <span class="material-icons">chevron_left</span>
+    </button>
+    <span id="month-year"></span>
+
+    <button onclick="nextMonth()">
+      <span class="material-icons">chevron_right</span>
+    </button>
+  </div>
+
+  <!-- Right -->
+  <div class="calander-header-buttun">
+    <button onclick="goToToday()">Today</button>
+
+    <select>
+      <option>Month</option>
+    </select>
+  </div>
+
+</div>
+
+        <div class="calendar-title">James Marry</div>
+        <div class="calendar-grid" id="calendar-grid" ></div>
+      </div>
+
+      <!-- Dashboard View -->
+      <div class="content" id="dashboard-view">
+        <div class="dashboard" style="background: white; padding: 25px; border-radius: 12px; box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);">
+          <h2>Practice Dashboard</h2>
+
+       <div style="margin: 20px 0; display: flex; gap: 10px; flex-wrap: wrap;">
+  
+  <input type="text" id="patient-search" placeholder="Patient Search"
+    onkeyup="filterTable()"
+    style="flex: 1; min-width: 200px; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+
+  <input type="text" id="doctor-search" placeholder="Doctor Search"
+    onkeyup="filterTable()"
+    style="flex: 1; min-width: 200px; padding: 10px; border: 1px solid #ddd; border-radius: 6px;">
+
+
+
+  <div style="display: flex; align-items: center; gap: 10px;">
+    <input type="date" id="startDate"
+      onchange="filterTable()"
+      class="border border-gray-300 rounded-xl px-4 py-3 focus:outline-none">
+
+    <span>—</span>
+
+    <input type="date" id="endDate"
+      onchange="filterTable()"
+      class="border border-gray-300 rounded-xl px-4 py-3 focus:outline-none">
+  </div>
+
+    <button onclick="filterTable()"
+    style="padding: 10px 20px; background: #3498db; color: white; border: none; border-radius: 6px;">
+   Update
+  </button>
+</div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Patient</th>
+                <th>Doctor</th>
+                <th>Hospital</th>
+                <th>Specialty</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="appointment-table"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="appointment-modal">
+      <div class="modal-content">
+        <div
+          class="modal-header"
+          style="
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+          "
+        >
+          <h2 id="modal-title">Schedule Appointment</h2>
+          <span
+            class="material-icons"
+            onclick="closeModal()"
+            style="cursor: pointer; font-size: 28px; color: #aaa"
+            >close</span
+          >
+        </div>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px">
+        <div class="form-group">
+          <label>Patient Name</label>
+          <select id="patient-name">
+            <option value="Henry James">Henry James</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Doctor Name</label>
+          <select id="doctor-name">
+            <option value="James Marry">James Marry</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Hospital Name</label>
+          <select id="hospital-name">
+            <option value="Salus Center (General Hospital)">
+              Salus Center (General Hospital)
+            </option>
+            <option value="Ultrcare (General Hospital)">
+              Ultrcare (General Hospital)
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Specialty</label>
+          <select id="specialty">
+            <option value="Dermatology">Dermatology</option>
+          </select>
+        </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px">
+          <div class="form-group">
+            <label>Select Date</label>
+            <input type="date" id="modal-date" />
+          </div>
+          <div class="form-group">
+            <label>Select Time</label>
+            <input type="time" id="modal-time" value="09:00" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Reason</label>
+          <textarea
+            id="reason"
+            rows="3"
+            placeholder="Enter reason..."
+          ></textarea>
+        </div>
+
+        <div class="modal-buttons">
+          <button class="btn btn-cancel" onclick="closeModal()">Cancel</button>
+          <button
+            class="btn btn-save"
+            id="save-btn"
+            onclick="saveAppointment()"
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
