@@ -143,12 +143,12 @@ body {
 }
 
 .appointment-actions {
-  position: absolute;
   top: 4px;
   right: 4px;
-  display: none;
   gap: 4px;
-  font-size: 16px;
+  font-size: 8px;
+  display: flex;
+  justify-content: end;
 }
 .appointment:hover .appointment-actions {
   display: flex;
