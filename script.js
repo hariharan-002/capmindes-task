@@ -248,10 +248,11 @@ function goToToday() {
   generateCalendar();
 }
 
-// Initialize
 window.onload = () => {
   generateCalendar();
-  renderDashboardTable();
+
+  document.getElementById("calendar-view").style.display = "block";
+  document.getElementById("dashboard-view").style.display = "none";
 };
 
 function toggleSidebar() {
